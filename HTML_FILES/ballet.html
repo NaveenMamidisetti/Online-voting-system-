@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Online Voting Application</title>
+    <style>
+      /* Styles for the header */
+      .header {
+        background-color: black;
+        color: white;
+        padding: 20px 0;
+      }
+
+      .header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .header .logo {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .header .navigation ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+
+      .header .navigation ul li {
+        margin-left: 20px;
+      }
+
+      .header .navigation ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+      }
+
+      .header .navigation ul li a:hover {
+        text-decoration: underline;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 20px;
+      }
+
+      .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      h2,
+      h3 {
+        color: #333;
+        margin-bottom: 15px;
+      }
+
+      form div {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+      }
+
+      input[type="text"] {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #564c4c;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      button:hover {
+        background-color: #000000;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f2f2f2;
+        color: #333;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header
+      class="header"
+      style="background-color: black; color: white; padding: 20px 0"
+    >
+      <div
+        class="container"
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <h1
+          class="logo"
+          style="font-size: 24px; color: black; font-weight: bold; margin: 0"
+        >
+          Online Voting System
+        </h1>
+        <nav class="navigation">
+          <ul style="list-style: none; margin: 0; padding: 0; display: flex">
+            <li style="margin-left: 20px">
+              <a
+                href="index.html"
+                style="color: black; text-decoration: none; font-size: 16px"
+                >Home</a
+              >
+            </li>
+            <li style="margin-left: 20px">
+              <a
+                href="#about"
+                style="color: black; text-decoration: none; font-size: 16px"
+                >About</a
+              >
+            </li>
+            <li style="margin-left: 20px">
+              <a
+                href="#features"
+                style="color: black; text-decoration: none; font-size: 16px"
+                >Features</a
+              >
+            </li>
+            <li style="margin-left: 20px">
+              <a
+                href="#contact"
+                style="color: black; text-decoration: none; font-size: 16px"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Ballot Creation Form -->
+    <section class="ballot-creation">
+      <div class="container">
+        <h2>Create Ballot</h2>
+        <form id="ballotForm">
+          <div>
+            <label for="poolingNumber">Pooling Number:</label>
+            <input
+              type="text"
+              id="poolingNumber"
+              name="poolingNumber"
+              required
+            />
+          </div>
+          <h3>Lok Sabha Candidates</h3>
+          <div>
+            <label for="lokSabhaCandidateName">Candidate Name:</label>
+            <input type="text" id="lokSabhaCandidateName" />
+            <label for="lokSabhaPartyName">Party Name:</label>
+            <input type="text" id="lokSabhaPartyName" />
+            <button type="button" id="addLokSabhaCandidate">
+              Add Lok Sabha Candidate
+            </button>
+          </div>
+          <table id="lokSabhaTable">
+            <thead>
+              <tr>
+                <th>Candidate Name</th>
+                <th>Party Name</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <h3>Rajya Sabha Candidates</h3>
+          <div>
+            <label for="rajyaSabhaCandidateName">Candidate Name:</label>
+            <input type="text" id="rajyaSabhaCandidateName" />
+            <label for="rajyaSabhaPartyName">Party Name:</label>
+            <input type="text" id="rajyaSabhaPartyName" />
+            <button type="button" id="addRajyaSabhaCandidate">
+              Add Rajya Sabha Candidate
+            </button>
+          </div>
+          <table id="rajyaSabhaTable">
+            <thead>
+              <tr>
+                <th>Candidate Name</th>
+                <th>Party Name</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <button type="submit" id="ballotForm">Create Ballot</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Ballot Display Section -->
+    <section class="ballot-display hidden" id="ballotDisplaySection">
+      <div class="container">
+        <h2>Ballot Display</h2>
+        <div id="ballotDisplay"></div>
+      </div>
+    </section>
+    <script>
+      // JavaScript to handle form submission and ballot display
+
+      const poolingNumber = document.getElementById("poolingNumber").value;
+      console.log(poolingNumber);
+      document
+        .getElementById("addLokSabhaCandidate")
+        .addEventListener("click", function () {
+          const nameInput = document.getElementById("lokSabhaCandidateName");
+          const partyInput = document.getElementById("lokSabhaPartyName");
+          const name = nameInput.value.trim();
+          const party = partyInput.value.trim();
+
+          if (name && party) {
+            const lokSabhaTableBody = document.querySelector(
+              "#lokSabhaTable tbody"
+            );
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                    <td>${name}</td>
+                    <td>${party}</td>
+                `;
+            lokSabhaTableBody.appendChild(newRow);
+
+            // Clear inputs
+            nameInput.value = "";
+            partyInput.value = "";
+          }
+        });
+
+      document
+        .getElementById("addRajyaSabhaCandidate")
+        .addEventListener("click", function () {
+          const nameInput = document.getElementById("rajyaSabhaCandidateName");
+          const partyInput = document.getElementById("rajyaSabhaPartyName");
+          const name = nameInput.value.trim();
+          const party = partyInput.value.trim();
+
+          if (name && party) {
+            const rajyaSabhaTableBody = document.querySelector(
+              "#rajyaSabhaTable tbody"
+            );
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                    <td>${name}</td>
+                    <td>${party}</td>
+                `;
+            rajyaSabhaTableBody.appendChild(newRow);
+
+            // Clear inputs
+            nameInput.value = "";
+            partyInput.value = "";
+          }
+        });
+      document
+        .getElementById("ballotForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent form submission
+
+          // Gather form data
+          const poolingNumber = document.getElementById("poolingNumber").value;
+          const lokSabhaCandidates = Array.from(
+            document.querySelectorAll("#lokSabhaTable tbody tr")
+          ).map((row) => ({
+            name: row.cells[0].textContent,
+            party: row.cells[1].textContent,
+          }));
+          const rajyaSabhaCandidates = Array.from(
+            document.querySelectorAll("#rajyaSabhaTable tbody tr")
+          ).map((row) => ({
+            name: row.cells[0].textContent,
+            party: row.cells[1].textContent,
+          }));
+
+          // URL-encode the JSON data
+          const encodedLokSabhaCandidates = encodeURIComponent(
+            JSON.stringify(lokSabhaCandidates)
+          );
+          const encodedRajyaSabhaCandidates = encodeURIComponent(
+            JSON.stringify(rajyaSabhaCandidates)
+          );
+
+          // Redirect with encoded data
+          window.location.href = `candidateinfo.php?poolno=${encodeURIComponent(
+            poolingNumber
+          )}&loksabha=${encodedLokSabhaCandidates}&rajyasabha=${encodedRajyaSabhaCandidates}`;
+        });
+
+      // document.getElementById('ballotForm').addEventListener('submit', function(event) {
+      //     event.preventDefault(); // Prevent form submission
+
+      //     // Gather form data
+      //     const poolingNumber = document.getElementById('poolingNumber').value;
+      //     const lokSabhaCandidates = Array.from(document.querySelectorAll('#lokSabhaTable tbody tr')).map(row => ({
+      //         name: row.cells[0].textContent,
+      //         party: row.cells[1].textContent
+      //     }));
+      //     const rajyaSabhaCandidates = Array.from(document.querySelectorAll('#rajyaSabhaTable tbody tr')).map(row => ({
+      //         name: row.cells[0].textContent,
+      //         party: row.cells[1].textContent
+      //     }));
+      //     window.location.href="candidateinfo.php?poolno="+poolingNumber+"&loksabha="+lokSabhaCandidates+"&rajyasabha="+rajyaSabhaCandidates;
+      //     //Prepare data for sending to PHP backend
+      //     const formData = new FormData();
+      //     formData.append('poolingNumber', poolingNumber);
+      //     formData.append('lokSabhaCandidates', JSON.stringify(lokSabhaCandidates));
+      //     formData.append('rajyaSabhaCandidates', JSON.stringify(rajyaSabhaCandidates));
+
+      //     // Send data to PHP backend
+      //     fetch('createballot.php', {
+      //         method: 'POST',
+      //         body: formData
+      //     })
+      //     .then(response => response.text())
+      //     .then(data => {
+      //         console.log(data); // You can handle the response here
+      //     })
+      //     .catch(error => {
+      //         console.error('Error:', error);
+      //     });
+      //  });
+    </script>
+  </body>
+</html>
