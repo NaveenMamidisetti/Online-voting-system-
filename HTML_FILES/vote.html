@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cast Your Vote - Online Voting System</title>
+  <link rel="stylesheet" href=".\..\CSS_FILES\vote_styles.css">
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">Online Voting System</h1>
+    </div>
+  </header>
+
+  <!-- Vote Casting Section -->
+  <section class="vote-casting">
+    <div class="container">
+      <h2>Cast Your Vote</h2>
+      <form action="cast_vote.php" method="POST">
+        <div class="form-group">
+          <label for="election">Select Election</label>
+          <select id="election" name="election" required>
+            <option value="">-- Select an Election --</option>
+            <option value="loksabhacandidates">Lok Sabha Election</option>
+            <option value="rajyasabhacandidates">Rajya Sabha Election</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="candidate">Select Candidate</label>
+          <select id="candidate" name="candidate" required>
+            <option value="">-- Select a Candidate --</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-vote">Vote</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container">
+      <p>Contact: info@onlinevotingsystem.com</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('election').addEventListener('change', function() {
+      const election = this.value;
+      const candidateSelect = document.getElementById('candidate');
+      console.log("Start");
+      // Clear existing options
+      candidateSelect.innerHTML = '<option value="">-- Select a Candidate --</option>';
+      
+      if (election) {
+        fetch('fetch_candidates.php?election=' + election)
+          .then(response => response.json())
+          .then(data => {
+            data.forEach(candidate => {
+              const option = document.createElement('option');
+              option.value = candidate.name;
+              option.textContent = candidate.name;
+              candidateSelect.appendChild(option);
+            });
+          })
+          .catch(error => console.error('Error fetching candidates:', error));
+      }
+    });
+  </script>
+</body>
+</html>
