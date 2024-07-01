@@ -41,7 +41,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`sno`, `name`, `email`, `pass`) VALUES
 (4, 'hhh', 'hhh@gmail.com', 'ggg'),
 (5, 'rt', 'iam@gmail.com', '123'),
-(6, 'Ramesh Pachikura', 'pachikuraramesh2212@gmail.com', '12345678');
+(6, 'Naveen Mamidisetti', 'naveenmamidisetti864@gmail.com', '12345678');
 
 --
 -- Indexes for dumped tables
